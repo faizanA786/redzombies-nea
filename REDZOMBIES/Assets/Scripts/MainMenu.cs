@@ -3,15 +3,15 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    public void OnPlayButton()
+    public void OnPlayButton() //Executes if play button pressed
     {
-        SceneManager.LoadScene("Game");
         Debug.Log("Play button pressed\nLoaded game scene");
+        SceneManager.LoadScene("Game"); //Load the game
     }
 
-    public void OnExitButton()
+    public void OnExitButton() //Executes if exit button pressed
     {
-        Debug.Log("Program closed");
-        Application.Quit();
+        Debug.Log("Exit button pressed\nProgram closed");
+        Application.Quit(); //Exit program
     }
 }
