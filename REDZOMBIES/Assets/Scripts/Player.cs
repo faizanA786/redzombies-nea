@@ -2,28 +2,53 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //Public variable values set in inspector window
-    public float movementSpeed;
-    public GameObject bulletObject;
+    public float movementSpeed; //value set in inspector window
+    int playerMaxHealth = 3;
+    public int playerHealth;
+    public int playerPoints = 0;
+    float shootTimer = 0.7f;
+    public bool playerDeath = false;
+
+    public GameObject bulletObject; //References bullet object
     Rigidbody2D rb;
 
-    void Start()
+    void Start() //Initialisation, called on first frame
     {
+        playerHealth = playerMaxHealth;
         rb = gameObject.GetComponent<Rigidbody2D>(); //Reference rigidbody component
     }
 
-    void Update()
+    void Update() //Called every frame
     {
-       float x = Input.GetAxis("Horizontal");
-       float y = Input.GetAxis("Vertical");
+        Movement();
+        Shoot();
+    }
 
-       Vector2 inputVector = new Vector2(x, y);
-       rb.velocity = inputVector * movementSpeed;
+    void Movement() //Responsible for movement of this object
+    {
+       float x = Input.GetAxis("Horizontal"); //Gets input from horizontal axis
+       float y = Input.GetAxis("Vertical"); //Gets input from vertical axis
 
-       if (Input.GetMouseButton(0))
+       Vector2 inputVector = new Vector2(x, y); //Constructs new vector2 with given input
+       inputVector.Normalize(); //Set magnitude to 1
+       rb.velocity = inputVector * movementSpeed; //Objects velocity updated accordingly to specified direction
+
+       Debug.Log(inputVector); //Prints the values inside this vector2 in console
+    }
+
+    void Shoot() //Responsible for firing a bullet
+    {
+        shootTimer *= Time.deltaTime; //Reduces value every second
+        if (Input.GetMouseButton(0) && shootTimer <= 0)
         {
            Instantiate(bulletObject, transform.position, transform.rotation);
            Debug.Log("left mouse button inputted\nFiring bullet!");
+           shootTimer = 0.7f;
         }
+    }
+
+    public void OnCollision2D() //Called when a collisions been made
+    {
+
     }
 }
