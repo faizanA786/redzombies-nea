@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public bool playerDeath = false;
 
     public GameObject bulletObject; //References bullet object
+    public GameObject weaponSprite; //References weapon object
     Rigidbody2D rb;
 
     void Start() //Initialisation, called on first frame
@@ -41,14 +42,14 @@ public class Player : MonoBehaviour
         shootTimer *= Time.deltaTime; //Reduces value every second
         if (Input.GetMouseButton(0) && shootTimer <= 0)
         {
-           Instantiate(bulletObject, transform.position, transform.rotation);
+           Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0,0.5f,0), transform.rotation);
            Debug.Log("left mouse button inputted\nFiring bullet!");
            shootTimer = 0.7f;
         }
     }
 
-    public void OnCollision2D() //Called when a collisions been made
+    public void OnCollisionStay2D(Collision2D body)
     {
-
+        
     }
 }

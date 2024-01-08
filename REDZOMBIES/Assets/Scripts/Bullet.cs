@@ -12,6 +12,11 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = transform.right * bulletSpeed;
+        rb.velocity = transform.up * bulletSpeed;
+    }
+
+    public void OnCollisionStay2D(Collision2D body)
+    {
+        
     }
 }
