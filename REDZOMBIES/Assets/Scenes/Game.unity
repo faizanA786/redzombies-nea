@@ -802,8 +802,9 @@ MonoBehaviour:
   playerHealth: 3
   playerPoints: 0
   playerDeath: 0
-  bulletObject: {fileID: 2454236713732673282, guid: 841399a25cb01480dbad0280f2db6ced, type: 3}
+  weaponSelected: 1
   weaponSprite: {fileID: 2124952862}
+  bulletObject: {fileID: 2454236713732673282, guid: 841399a25cb01480dbad0280f2db6ced, type: 3}
 --- !u!1 &1921799207
 GameObject:
   m_ObjectHideFlags: 0
