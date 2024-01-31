@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
             {
                 Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0.1f, 0), transform.rotation);
                 //Create instance of bullet at 0.1 pixels infront of weapon sprites position with same rotation as player
-                shootTimer = 0.6f; //Sets a cooldown to how fast the weapon can be fired
+                shootTimer = 0.4f; //Sets a cooldown to how fast the weapon can be fired
             }
 
             /*else if (weaponSelected == 2) //2 is assualt rifle

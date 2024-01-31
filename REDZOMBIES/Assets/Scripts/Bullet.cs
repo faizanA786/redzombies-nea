@@ -17,6 +17,6 @@ public class Bullet : MonoBehaviour
 
     public void OnCollisionStay2D(Collision2D body)//Called when a collisions been made
     {
-        
+            
     }
 }
