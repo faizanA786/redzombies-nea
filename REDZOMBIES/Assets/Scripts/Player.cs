@@ -57,15 +57,19 @@ public class Player : MonoBehaviour
                 shootTimer = 0.4f; //Sets a cooldown to how fast the weapon can be fired
             }
 
-            /*else if (weaponSelected == 2) //2 is assualt rifle
+            else if (weaponSelected == 2) //2 is assualt rifle
             {
+                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0.1f, 0), transform.rotation);
+                shootTimer = 0.2f; 
+            }
 
-            }*/
-
-            /*else if (weaponSelected == 3) //3 is shotgun
+            else if (weaponSelected == 3) //3 is shotgun
             {
-
-            }*/
+                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(-0.2f, 0.1f, 0), transform.rotation);
+                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0.1f, 0), transform.rotation);
+                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0.2f, 0.1f, 0), transform.rotation);
+                shootTimer = 0.5f; 
+            }
             
             Debug.Log("left mouse button inputted\nFiring bullet!");
         }
