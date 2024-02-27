@@ -42,7 +42,12 @@ public class Player : MonoBehaviour
 
     void FaceCursor() //Responsible for object facing users cursor
     {
+        Vector3 mousePosition = Input.mousePosition; //Fetch coordinates of mouse on screen
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition); //Convert coordinates from real-world to in-game world
 
+        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y); 
+        //Calculate direction from current objects position to the mouse position
+        transform.up = direction; //Set objects 'up' direction to face the calculated direction
     }
 
     void Shoot() //Responsible for firing a bullet
@@ -53,26 +58,26 @@ public class Player : MonoBehaviour
             float randomRotation = Random.Range(-8f, 8f);
             if (weaponSelected == 1) //1 is pistol
             {
-                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0.1f, 0), transform.rotation * Quaternion.Euler(0, 0, randomRotation));
-                //Create instance of bullet at 0.1 pixels infront of weapon sprites position with an manipulated rotation from the players rotation
+                Instantiate(bulletObject, weaponSprite.transform.position, transform.rotation * Quaternion.Euler(0, 0, randomRotation));
+                //Create instance of bullet at weapon sprites position with an manipulated rotation from the players rotation
                 shootTimer = 0.4f; //Sets a cooldown to how fast the weapon can be fired
             }
 
             else if (weaponSelected == 2) //2 is assualt rifle
             {
-                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0.1f, 0), transform.rotation * Quaternion.Euler(0, 0, randomRotation));
+                Instantiate(bulletObject, weaponSprite.transform.position, transform.rotation * Quaternion.Euler(0, 0, randomRotation));
                 shootTimer = 0.2f; 
             }
 
             else if (weaponSelected == 3) //3 is shotgun
             {
-                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(-0.2f, 0.1f, 0), transform.rotation * Quaternion.Euler(0, 0, 8f));
-                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0.1f, 0), transform.rotation);
-                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0.2f, 0.1f, 0), transform.rotation * Quaternion.Euler(0, 0, -8f));
+                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(-0.2f, 0f, 0), transform.rotation * Quaternion.Euler(0, 0, 8f));
+                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0, 0), transform.rotation);
+                Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0.2f, 0f, 0), transform.rotation * Quaternion.Euler(0, 0, -8f));
                 shootTimer = 0.5f; 
             }
             
-            Debug.Log("left mouse button inputted\nFiring bullet!");
+           //Debug.Log("left mouse button inputted\nFiring bullet!");
         }
     }
 
