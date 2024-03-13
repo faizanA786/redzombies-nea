@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     float shootTimer; //Differing values are set in Shoot()
     public bool playerDeath = false;
     public int weaponSelected; //Holds the value of the weapon currently assigned
+    float attackTimer = 1.2f;//Speed at which enemy can 'attack' player
 
     public GameObject weaponSprite; //References weapon object
     public GameObject bulletObject; //References bullet object
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 
     void Update() //Called every frame
     {
+        attackTimer -= Time.deltaTime;
         Movement();
         FaceCursor();
         Shoot();
@@ -45,7 +47,7 @@ public class Player : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition; //Fetch coordinates of mouse on screen
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition); //Convert coordinates from real-world to in-game world
 
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y); 
+        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         //Calculate direction from current objects position to the mouse position
         transform.up = direction; //Set objects 'up' direction to face the calculated direction
     }
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour
             else if (weaponSelected == 2) //2 is assualt rifle
             {
                 Instantiate(bulletObject, weaponSprite.transform.position, transform.rotation * Quaternion.Euler(0, 0, randomRotation));
-                shootTimer = 0.2f; 
+                shootTimer = 0.2f;
             }
 
             else if (weaponSelected == 3) //3 is shotgun
@@ -74,15 +76,21 @@ public class Player : MonoBehaviour
                 Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(-0.2f, 0f, 0), transform.rotation * Quaternion.Euler(0, 0, 8f));
                 Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0, 0), transform.rotation);
                 Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0.2f, 0f, 0), transform.rotation * Quaternion.Euler(0, 0, -8f));
-                shootTimer = 0.5f; 
+                shootTimer = 0.5f;
             }
-            
-           //Debug.Log("left mouse button inputted\nFiring bullet!");
+
+            //Debug.Log("left mouse button inputted\nFiring bullet!");
         }
     }
 
-    public void OnCollisionStay2D(Collision2D body)//Called when a collisions been made
+    public void OnCollisionStay2D(Collision2D body)//Called when a collisions being made
     {
-        
+        Enemy isEnemy = body.gameObject.GetComponent<Enemy>();
+        if (isEnemy != null && attackTimer <= 0)
+        {
+            playerHealth -= 1;
+            attackTimer = 1.2f;
+            Debug.Log("Player damaged!\nHealth:" + playerHealth.ToString());
+        }
     }
 }
