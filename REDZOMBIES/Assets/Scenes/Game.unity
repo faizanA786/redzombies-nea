@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 52788157}
   - component: {fileID: 52788159}
   - component: {fileID: 52788158}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 156675754}
   - component: {fileID: 156675753}
   - component: {fileID: 156675752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 420660280}
   - component: {fileID: 420660282}
   - component: {fileID: 420660281}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: DetectPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 789784975}
   - component: {fileID: 789784974}
   - component: {fileID: 789784973}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AssaultRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1283,7 +1283,7 @@ GameObject:
   - component: {fileID: 1065281545}
   - component: {fileID: 1065281547}
   - component: {fileID: 1065281546}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: DetectPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1412,7 +1412,7 @@ GameObject:
   - component: {fileID: 1427830572}
   - component: {fileID: 1427830571}
   - component: {fileID: 1427830573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,6 +1512,75 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!1001 &1456450276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -3054180556738329307, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1589931664}
+    - target: {fileID: -3054180556738329307, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1589931664}
+    - target: {fileID: -3054180556738329307, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: movementSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 389100211963687595, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_Name
+      value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957649142868854617, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
 --- !u!1001 &1462095689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1831,7 +1900,7 @@ GameObject:
   - component: {fileID: 1727747040}
   - component: {fileID: 1727747042}
   - component: {fileID: 1727747041}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2003,7 +2072,7 @@ GameObject:
   - component: {fileID: 1856908710}
   - component: {fileID: 1856908712}
   - component: {fileID: 1856908711}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: DetectPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2214,7 +2283,7 @@ GameObject:
   - component: {fileID: 1985662044}
   - component: {fileID: 1985662043}
   - component: {fileID: 1985662042}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2751,6 +2820,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3054180556738329307, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
       propertyPath: player
+      value: 
+      objectReference: {fileID: 1589931664}
+    - target: {fileID: -3054180556738329307, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+      propertyPath: playerObject
       value: 
       objectReference: {fileID: 1589931664}
     - target: {fileID: -3054180556738329307, guid: 171d5352796334b4f953484b5b8d374a, type: 3}

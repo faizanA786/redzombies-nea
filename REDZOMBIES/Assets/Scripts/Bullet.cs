@@ -25,11 +25,15 @@ public class Bullet : MonoBehaviour
     {
         Collider2D hasCollider = body.gameObject.GetComponent<Collider2D>();
         //Attempt to fetch the collider component attatched to the object collided with
-        string isTrigger = body.gameObject.name;
-        //Fetch name of collided game object
+        string isTrigger = body.gameObject.name; //Fetch name of collided game object
+        Enemy isEnemy = body.gameObject.GetComponent<Enemy>();
         if (hasCollider != null && isTrigger != "DetectPlayer")
         //If the collided object does have a collider and isTrigger not holding DetectPlayer text
         {
+            if (isEnemy != null)
+            {
+                isEnemy.enemyHealth -= 1;
+            }
             Destroy(gameObject); 
         }
     }
