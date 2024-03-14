@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public int playerHealth;
     public int playerPoints = 0;
     float shootTimer; //Differing values are set in Shoot()
-    public bool playerDeath = false;
     public int weaponSelected; //Holds the value of the weapon currently assigned
     float attackTimer = 1.2f;//Speed at which enemy can 'attack' player
 

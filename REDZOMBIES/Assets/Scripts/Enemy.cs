@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
-            player.playerPoints += 10;
+            player.playerPoints += 20;
             Destroy(gameObject);
         }
     }

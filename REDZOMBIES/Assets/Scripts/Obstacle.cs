@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Obstacle : MonoBehaviour
 {
-    public static int cost = 500; //Cost is same for all instances
+    public static int cost = 100; //Cost is same for all instances
     public GameObject costLabel; //Reference CostLabel object
     TextMeshPro costText;
 
@@ -30,7 +30,7 @@ public class Obstacle : MonoBehaviour
             {
                 Debug.Log("Obstacle cleared");
                 isPlayer.playerPoints -= cost; //Subtract playerPoints attribute of player object by the cost
-                cost += 300; //Increase cost of clearing obstacles
+                cost += 100; //Increase cost of clearing obstacles
                 Destroy(transform.parent.gameObject); //Remove obstacle object from game i.e clearing
             }
         }
