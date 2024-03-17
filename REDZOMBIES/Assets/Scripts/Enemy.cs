@@ -6,14 +6,20 @@ public class Enemy : MonoBehaviour
     public float maxEnemyHealth = 3f;
     public float enemyHealth;
     public GameObject playerObject;
+    public GameObject gameProcessingObject;
     Player player;
+    GameProcessing gameProcessing;
     Rigidbody2D rb;
 
     void Start()
     {
         enemyHealth = maxEnemyHealth;
         rb = gameObject.GetComponent<Rigidbody2D>();
+        gameProcessingObject = GameObject.Find("GameProcessing");
+        playerObject = GameObject.Find("Player");
+
         player = playerObject.GetComponent<Player>(); //Fetch player class
+        gameProcessing = gameProcessingObject.GetComponent<GameProcessing>();
     }
 
     void Update()
@@ -23,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (enemyHealth <= 0)
         {
             player.playerPoints += 20;
+            gameProcessing.enemiesToKill -= 1;
             Destroy(gameObject);
         }
     }

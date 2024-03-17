@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
         shootTimer -= Time.deltaTime; //Reduce the shooting cooldown every second
         if (Input.GetMouseButton(0) && shootTimer <= 0) //If left mouse button is held down and theres no shoot cooldown
         {
-            float randomRotation = Random.Range(-8f, 8f);
+            float randomRotation = Random.Range(-8f, 9f);
             if (weaponSelected == 1) //1 is pistol
             {
                 Instantiate(bulletObject, weaponSprite.transform.position, transform.rotation * Quaternion.Euler(0, 0, randomRotation));
