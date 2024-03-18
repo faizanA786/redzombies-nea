@@ -1508,6 +1508,7 @@ MonoBehaviour:
   - {fileID: 796995516}
   player: {fileID: 1589931669}
   enemyObject: {fileID: 389100211963687595, guid: 171d5352796334b4f953484b5b8d374a, type: 3}
+  fastEnemyObject: {fileID: 4257006272413368577, guid: 89532d3e3cf97e849b958718e0d1f6ab, type: 3}
   waveDisplay: {fileID: 866469893}
   scoreDisplay: {fileID: 2125160268}
   healthDisplay: {fileID: 210331499}

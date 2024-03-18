@@ -7,6 +7,7 @@ public class GameProcessing : MonoBehaviour
     public GameObject[] spawnLocations; //Holds all possible spawn locations for enemy
     public Player player; //Get reference to player class inside game scene
     public GameObject enemyObject; //Get enemy object prefab
+    public GameObject fastEnemyObject;
     public GameObject waveDisplay; //Reference WaveText object
     Text waveText;
     public GameObject scoreDisplay; //Reference ScoreText object
@@ -50,12 +51,21 @@ public class GameProcessing : MonoBehaviour
     {
         waveNumber += 1; //Increment wave number
 
-        enemiesToSpawn += Random.Range(4, 10); //Spawn more enemies next round by a seemingly random amount
+        enemiesToSpawn += Random.Range(4, 11); //Spawn more enemies next round by a seemingly random amount
         enemiesToKill = enemiesToSpawn; 
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-                int randomSpawn = Random.Range(0, 7); //Choose a random enemy spawn location
+            int randomSpawn = Random.Range(0, 7); //Choose a random enemy spawn location
+            int randomChance = Random.Range(1, 5); //Choose a number from 1 to 4
+
+            if (randomChance == 4) // 25% chance to spawn a fast enemy
+            {
+                Instantiate(fastEnemyObject, spawnLocations[randomSpawn].transform.position, transform.rotation); //Spawn fast enemy
+            }
+            else
+            {
                 Instantiate(enemyObject, spawnLocations[randomSpawn].transform.position, transform.rotation); //Spawn enemy
+            }
         }
         Debug.Log("Next round started!\n" + enemiesToSpawn.ToString() + " enemies have spawned this round");
     }

@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             else if (weaponSelected == 2) //2 is assualt rifle
             {
                 Instantiate(bulletObject, weaponSprite.transform.position, transform.rotation * Quaternion.Euler(0, 0, randomRotation));
-                shootTimer = 0.2f;
+                shootTimer = 0.16f;
             }
 
             else if (weaponSelected == 3) //3 is shotgun
