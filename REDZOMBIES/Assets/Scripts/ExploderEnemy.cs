@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class ExploderEnemy : MonoBehaviour
 {
     public float movementSpeed;
     public float maxEnemyHealth = 3f;
     public float enemyHealth;
     public GameObject playerObject;
     public GameObject gameProcessingObject;
+    public GameObject explosionObject;
     Player player;
     GameProcessing gameProcessing;
     Rigidbody2D rb;
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
         {
             player.playerPoints += 20;
             gameProcessing.enemiesToKill -= 1;
+            Instantiate(explosionObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
@@ -43,6 +45,16 @@ public class Enemy : MonoBehaviour
         //Set magnitude to this vector to 1
         rb.velocity = distanceFromPlayer * movementSpeed;
         //Set velocity to this direction multiplied by the speed
+    }
+
+    public void OnCollisionEnter2D(Collision2D body)
+    {
+        Player isPlayer = body.gameObject.GetComponent<Player>();
+        if (isPlayer != null)
+        {
+            Instantiate(explosionObject, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 
 }

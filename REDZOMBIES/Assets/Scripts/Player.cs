@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float movementSpeed; //value set in inspector window
-    int playerMaxHealth = 3;
+    public int playerMaxHealth = 3;
     public int playerHealth;
     public int playerPoints = 0;
     float shootTimer; //Differing values are set in Shoot()
@@ -85,7 +85,9 @@ public class Player : MonoBehaviour
     public void OnCollisionStay2D(Collision2D body)//Called when a collisions being made
     {
         Enemy isEnemy = body.gameObject.GetComponent<Enemy>();
-        if (isEnemy != null && attackTimer <= 0)
+        ExploderEnemy isExploderEnemy = body.gameObject.GetComponent<ExploderEnemy>();
+        if ((isEnemy != null || isExploderEnemy != null) && attackTimer <= 0)
+        //If enemy class found or exploder enemy class found
         {
             playerHealth -= 1;
             attackTimer = 1.2f;
