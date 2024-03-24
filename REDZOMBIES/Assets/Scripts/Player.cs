@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public int playerMaxHealth = 3;
     public int playerHealth;
     public int playerPoints = 0;
+    public int bulletCapacity = 100;
     float shootTimer; //Differing values are set in Shoot()
     public int weaponSelected; //Holds the value of the weapon currently assigned
     float attackTimer = 1.2f;//Speed at which enemy can 'attack' player
@@ -54,8 +55,9 @@ public class Player : MonoBehaviour
     void Shoot() //Responsible for firing a bullet
     {
         shootTimer -= Time.deltaTime; //Reduce the shooting cooldown every second
-        if (Input.GetMouseButton(0) && shootTimer <= 0) //If left mouse button is held down and theres no shoot cooldown
+        if (Input.GetMouseButton(0) && shootTimer <= 0 && bulletCapacity > 0) //If left mouse button is held down and theres no shoot cooldown
         {
+            bulletCapacity -= 1;
             float randomRotation = Random.Range(-8f, 9f);
             if (weaponSelected == 1) //1 is pistol
             {
@@ -72,6 +74,7 @@ public class Player : MonoBehaviour
 
             else if (weaponSelected == 3) //3 is shotgun
             {
+                bulletCapacity -= 1;
                 Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(-0.2f, 0f, 0), transform.rotation * Quaternion.Euler(0, 0, 8f));
                 Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0, 0, 0), transform.rotation);
                 Instantiate(bulletObject, weaponSprite.transform.position + new Vector3(0.2f, 0f, 0), transform.rotation * Quaternion.Euler(0, 0, -8f));

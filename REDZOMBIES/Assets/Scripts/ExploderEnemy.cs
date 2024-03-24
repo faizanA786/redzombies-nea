@@ -3,7 +3,6 @@ using UnityEngine;
 public class ExploderEnemy : MonoBehaviour
 {
     public float movementSpeed;
-    public float maxEnemyHealth = 3f;
     public float enemyHealth;
     public GameObject playerObject;
     public GameObject gameProcessingObject;
@@ -20,7 +19,6 @@ public class ExploderEnemy : MonoBehaviour
 
         player = playerObject.GetComponent<Player>(); //Fetch player class
         gameProcessing = gameProcessingObject.GetComponent<GameProcessing>();
-        enemyHealth = maxEnemyHealth;
     }
 
     void Update()

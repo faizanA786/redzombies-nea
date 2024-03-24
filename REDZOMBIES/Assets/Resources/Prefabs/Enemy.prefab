@@ -146,5 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2
   maxEnemyHealth: 3
-  enemyHealth: 1
+  enemyHealth: 3
   playerObject: {fileID: 0}
+  gameProcessingObject: {fileID: 0}

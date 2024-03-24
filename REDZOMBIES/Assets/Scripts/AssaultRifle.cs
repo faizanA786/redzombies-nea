@@ -24,9 +24,10 @@ public class AssaultRifle : MonoBehaviour
         Player isPlayer = body.gameObject.GetComponent<Player>(); //Fetch player class
         if (isPlayer != null) //If player class found in body
         {
-            if (isPlayer.weaponSelected != 2 && Input.GetKey(KeyCode.E) && isPlayer.playerPoints >= cost)
+            if (Input.GetKey(KeyCode.E) && isPlayer.playerPoints >= cost)
             //If player doesnt already have an assualt rifle and 'E' key pressed and player has enough points to buy weapon
             {
+                isPlayer.bulletCapacity = 500;
                 isPlayer.playerPoints -= cost; //Subtract playerPoints attribute of player object by the cost
                 isPlayer.weaponSelected = 2;
                 Debug.Log("User bought rifle");

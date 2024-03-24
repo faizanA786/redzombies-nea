@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   maxEnemyHealth: 2
-  enemyHealth: 1
+  enemyHealth: 2
   playerObject: {fileID: 0}
   gameProcessingObject: {fileID: 0}
   explosionObject: {fileID: 2117049530332916581, guid: d6d8baa700771884a81afa5941d8d0f8, type: 3}
