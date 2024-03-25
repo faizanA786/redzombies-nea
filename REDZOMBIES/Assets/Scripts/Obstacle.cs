@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     public static int cost = 100; //Cost is same for all instances
     public GameObject costLabel; //Reference CostLabel object
+    public GameObject clearedObstacleVariant;
     TextMeshPro costText;
 
     void Start()
@@ -31,6 +32,7 @@ public class Obstacle : MonoBehaviour
                 Debug.Log("Obstacle cleared");
                 isPlayer.playerPoints -= cost; //Subtract playerPoints attribute of player object by the cost
                 cost += 100; //Increase cost of clearing obstacles
+                Instantiate(clearedObstacleVariant, new Vector3(transform.position.x, transform.position.y, -1), transform.rotation);
                 Destroy(transform.parent.gameObject); //Remove obstacle object from game i.e clearing
             }
         }

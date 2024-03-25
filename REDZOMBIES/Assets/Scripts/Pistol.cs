@@ -24,7 +24,7 @@ public class Pistol : MonoBehaviour
         Player isPlayer = body.gameObject.GetComponent<Player>(); //Fetch player class
         if (isPlayer != null) //If player class found in body
         {
-            if (Input.GetKey(KeyCode.E) && isPlayer.playerPoints >= cost)
+            if (Input.GetKeyDown(KeyCode.E) && isPlayer.playerPoints >= cost)
             //If player doesnt already have a pistol and 'E' key pressed and player has enough points to buy weapon
             {
                 isPlayer.bulletCapacity = 100;

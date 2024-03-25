@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   costLabel: {fileID: 5338222494618743550}
+  clearedObstacleVariant: {fileID: 5147424120286808947, guid: bf27d1bc7ce02294cb5b4755ef3fe157, type: 3}
 --- !u!61 &1783497444453823720
 BoxCollider2D:
   m_ObjectHideFlags: 0

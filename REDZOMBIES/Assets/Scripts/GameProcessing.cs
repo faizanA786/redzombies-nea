@@ -24,6 +24,9 @@ public class GameProcessing : MonoBehaviour
     Text weaponText;
     Enemy enemyClass;
 
+    bool nextWave = false;
+    int enemiesSpawned = 0;
+    float spawnTimer = 1f;
     float enemyHealthScale = 0;
     float enemySpeedScale = 0;
     public int waveNumber = 0; //Current wave number
@@ -45,6 +48,11 @@ public class GameProcessing : MonoBehaviour
     
     void Update()
     {
+        if (nextWave)
+        {
+            SpawnEnemies();
+        }
+
         if (player.weaponSelected == 1)
         {
             weaponText.text = "Weapon: Pistol";
@@ -61,6 +69,8 @@ public class GameProcessing : MonoBehaviour
         healthText.text = "Health: " + player.playerHealth.ToString(); //Output players health
         waveText.text = "Wave: " + waveNumber.ToString();//Output wave number
         scoreText.text = "Points: " + player.playerPoints.ToString();//Output players in-game points
+
+        spawnTimer -= Time.deltaTime;
         if (player.playerHealth <= 0)
         {
             Debug.Log("Game ended!");
@@ -75,14 +85,17 @@ public class GameProcessing : MonoBehaviour
     void NextWave()
     {
         waveNumber += 1; //Increment wave number
-
         if (waveNumber > 1)
         {
             ScaleDifficulty();
         }
         enemiesToKill = enemiesToSpawn;
+        nextWave = true;
+    }
 
-        for (int i = 0; i < enemiesToSpawn; i++)
+    void SpawnEnemies()
+    {
+        if (enemiesSpawned < enemiesToSpawn && spawnTimer <= 0)
         {
             int randomSpawn = Random.Range(0, 7); //Choose a random enemy spawn location
             int randomChance = Random.Range(1, 5); //Choose a number from 1 to 4
@@ -98,7 +111,6 @@ public class GameProcessing : MonoBehaviour
                     Instantiate(fastEnemyObject, spawnLocations[randomSpawn].transform.position, transform.rotation); //Spawn fast enemy
                 }
             }
-
             else
             {
                 GameObject newEnemy = Instantiate(enemyObject, spawnLocations[randomSpawn].transform.position, transform.rotation); //Spawn enemy
@@ -106,8 +118,16 @@ public class GameProcessing : MonoBehaviour
                 enemyClass.enemyHealth += enemyHealthScale;
                 enemyClass.movementSpeed += enemySpeedScale;
             }
+            enemiesSpawned += 1;
+            spawnTimer = 1f;
+            //Debug.Log("Enemy spawned");
         }
-        Debug.Log("Next round started!\n" + enemiesToSpawn.ToString() + " enemies have spawned this round");
+        else if (enemiesSpawned == enemiesToSpawn)
+        {
+            enemiesSpawned = 0;
+            nextWave = false;
+            Debug.Log("Next round started!\n" + enemiesToSpawn.ToString() + " enemies have spawned this round");
+        }
     }
 
     void ScaleDifficulty()
