@@ -15,7 +15,7 @@ TagManager:
   - Bullet
   - Region
   - Enemy
-  - Object
+  - Interactable
   - 
   - 
   - 

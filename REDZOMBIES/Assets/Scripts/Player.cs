@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public int playerMaxHealth = 3;
     public int playerHealth;
     public int playerPoints = 0;
+    public int totalPoints = 0;
     public int bulletCapacity = 100;
     float shootTimer; //Differing values are set in Shoot()
     public int weaponSelected; //Holds the value of the weapon currently assigned
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
 
     public GameObject weaponSprite; //References weapon object
     public GameObject bulletObject; //References bullet object
+    SpriteRenderer sprite;
     Rigidbody2D rb;
 
     void Start() //Initialisation, called on first frame
@@ -20,11 +22,17 @@ public class Player : MonoBehaviour
         playerHealth = playerMaxHealth;
         weaponSelected = 1; //Assign pistol as starting weapon
         rb = gameObject.GetComponent<Rigidbody2D>(); //Reference rigidbody component
+        sprite = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update() //Called every frame
     {
         attackTimer -= Time.deltaTime;
+        if (attackTimer <= 0)
+        {
+            sprite.color = new Color(32 / 255f, 255 / 255f, 253 /255f);
+            //set colour of sprite to cyan
+        }
         Movement();
         FaceCursor();
         Shoot();
@@ -89,11 +97,21 @@ public class Player : MonoBehaviour
     {
         Enemy isEnemy = body.gameObject.GetComponent<Enemy>();
         ExploderEnemy isExploderEnemy = body.gameObject.GetComponent<ExploderEnemy>();
-        if ((isEnemy != null || isExploderEnemy != null) && attackTimer <= 0)
+        if (isEnemy != null || isExploderEnemy != null)
         //If enemy class found or exploder enemy class found
+        {
+            DamagePlayer();
+        }
+    }
+
+    public void DamagePlayer()
+    {
+        if (attackTimer <= 0)
         {
             playerHealth -= 1;
             attackTimer = 1.2f;
+            sprite.color = new Color(255 / 255f, 1 / 255f, 1 / 255f);
+            //set colour of sprite to light red
             Debug.Log("Player damaged!\nHealth:" + playerHealth.ToString());
         }
     }

@@ -31,13 +31,13 @@ public class Bullet : MonoBehaviour
         if (hasCollider != null && isTrigger != "DetectPlayer")
         //If the collided object does have a collider and isTrigger not holding DetectPlayer text
         {
-            if (isEnemy != null)
+            if (isEnemy != null && isEnemy.enemyHealth > 0)
             {
-                isEnemy.enemyHealth -= 1;
+                isEnemy.DamageEnemy();
             }
-            else if (isExploderEnemy != null)
+            else if (isExploderEnemy != null && isExploderEnemy.enemyHealth > 0)
             {
-                isExploderEnemy.enemyHealth -= 1;
+                isExploderEnemy.DamageEnemy();
             }
             Destroy(gameObject); 
         }

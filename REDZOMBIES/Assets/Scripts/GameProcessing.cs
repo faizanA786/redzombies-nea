@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,6 +23,8 @@ public class GameProcessing : MonoBehaviour
     Text bulletText;
     public GameObject weaponDisplay; //Reference weaponText object
     Text weaponText;
+    public GameObject enemiesDisplay; 
+    Text enemiesText;
     Enemy enemyClass;
 
     bool nextWave = false;
@@ -44,6 +47,7 @@ public class GameProcessing : MonoBehaviour
         bulletText = bulletDisplay.GetComponent<Text>();
         waveText = waveDisplay.GetComponent<Text>();
         healthText = healthDisplay.GetComponent<Text>();
+        enemiesText = enemiesDisplay.GetComponent<Text>();
     }
     
     void Update()
@@ -69,10 +73,13 @@ public class GameProcessing : MonoBehaviour
         healthText.text = "Health: " + player.playerHealth.ToString(); //Output players health
         waveText.text = "Wave: " + waveNumber.ToString();//Output wave number
         scoreText.text = "Points: " + player.playerPoints.ToString();//Output players in-game points
+        enemiesText.text = "Enemies Alive: " + enemiesToKill.ToString(); // Output number of enemies to spawn
 
         spawnTimer -= Time.deltaTime;
         if (player.playerHealth <= 0)
         {
+            SaveData("WaveReached", waveNumber);
+            SaveData("TotalPoints", player.totalPoints);
             Debug.Log("Game ended!");
             SceneManager.LoadScene("GameOver"); //Load game over scene, ending the game
         }
@@ -80,6 +87,26 @@ public class GameProcessing : MonoBehaviour
         {
             NextWave();
         }
+    }
+
+    public static void SaveData(string score, int value) //Stores the specified data in the game
+    {
+        PlayerPrefs.SetInt(score, value);
+        //Saves the value underneath the score string representing it
+        //Eg ("TotalPoints", 1090) or ("WaveNumber", 9)
+        Debug.Log("Stored a score");
+    }
+
+    public static int LoadSaveData(string score) //Returns the save data
+    {
+        if (PlayerPrefs.HasKey(score)) //Validates that the specified score exists
+        {
+            return PlayerPrefs.GetInt(score); //Returns the value of this score
+        }
+        else
+        {
+            return 0; //Returns nothing if key not found
+        }    
     }
 
     void NextWave()
@@ -116,6 +143,7 @@ public class GameProcessing : MonoBehaviour
                 GameObject newEnemy = Instantiate(enemyObject, spawnLocations[randomSpawn].transform.position, transform.rotation); //Spawn enemy
                 enemyClass = newEnemy.GetComponent<Enemy>();
                 enemyClass.enemyHealth += enemyHealthScale;
+                enemyClass.maxEnemyHealth = enemyClass.enemyHealth;
                 enemyClass.movementSpeed += enemySpeedScale;
             }
             enemiesSpawned += 1;

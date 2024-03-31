@@ -20,15 +20,18 @@ public class Explosion : MonoBehaviour
         ExploderEnemy isExploderEnemy = body.gameObject.GetComponent<ExploderEnemy>();
         if (isPlayer != null)
         {
-            isPlayer.playerHealth -= 3;
+            isPlayer.playerHealth -= 2;
+            isPlayer.DamagePlayer();
         }
-        else if (isEnemy != null)
+        if (isEnemy != null)
         {
-            isEnemy.enemyHealth -= 3;
+            isEnemy.enemyHealth -= 2;
+            isEnemy.DamageEnemy();
         }
-        else if (isExploderEnemy != null)
+        if (isExploderEnemy != null)
         {
-            isExploderEnemy.enemyHealth -= 3;
+            isExploderEnemy.enemyHealth -= 2;
+            isExploderEnemy.DamageEnemy();
         }
     }
 }

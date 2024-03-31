@@ -4,34 +4,32 @@ public class ExploderEnemy : MonoBehaviour
 {
     public float movementSpeed;
     public float enemyHealth;
+    public float maxEnemyHealth;
     public GameObject playerObject;
     public GameObject gameProcessingObject;
     public GameObject explosionObject;
+    public GameObject healthbarSlider;
+    EnemyHealthbar healthbar;
     Player player;
     GameProcessing gameProcessing;
     Rigidbody2D rb;
 
     void Start()
     {
+        enemyHealth = maxEnemyHealth;
+        healthbar = healthbarSlider.GetComponent<EnemyHealthbar>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         gameProcessingObject = GameObject.Find("GameProcessing");
         playerObject = GameObject.Find("Player");
 
         player = playerObject.GetComponent<Player>(); //Fetch player class
         gameProcessing = gameProcessingObject.GetComponent<GameProcessing>();
+        healthbar.SetHealthbar(enemyHealth, maxEnemyHealth);
     }
 
     void Update()
     {
         Movement();
-
-        if (enemyHealth <= 0)
-        {
-            player.playerPoints += 20;
-            gameProcessing.enemiesToKill -= 1;
-            Instantiate(explosionObject, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
     }
 
     void Movement()
@@ -53,6 +51,28 @@ public class ExploderEnemy : MonoBehaviour
             Instantiate(explosionObject, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+    }
+
+    public void DamageEnemy()
+    {
+        if (enemyHealth > 0)
+        {
+            float bulletDamage = Random.Range(0.5f, 1f);
+            enemyHealth -= bulletDamage;
+            if (enemyHealth <= 0)
+            {
+                Eliminate();
+            }
+            healthbar.SetHealthbar(enemyHealth, maxEnemyHealth);
+        }
+    }
+    void Eliminate()
+    {
+        player.playerPoints += 30;
+        player.totalPoints += 30;
+        gameProcessing.enemiesToKill -= 1;
+        Instantiate(explosionObject, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
 }
