@@ -151,6 +151,7 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   gameProcessingObject: {fileID: 0}
   healthbarSlider: {fileID: 2144612218752329834}
+  powerupObject: {fileID: 1098853251426015971, guid: d2076f384842bc048b0170d3bc569f73, type: 3}
 --- !u!1 &2144612218752329834
 GameObject:
   m_ObjectHideFlags: 0

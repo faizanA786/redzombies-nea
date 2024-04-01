@@ -89,6 +89,12 @@ public class Player : MonoBehaviour
                 shootTimer = 0.5f;
             }
 
+            else if (weaponSelected == 4) //4 is rocket launcher
+            {
+                Instantiate(bulletObject, weaponSprite.transform.position, transform.rotation * Quaternion.Euler(0, 0, randomRotation));
+                shootTimer = 1f;
+            }
+
             //Debug.Log("left mouse button inputted\nFiring bullet!");
         }
     }

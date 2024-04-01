@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
@@ -6,9 +7,12 @@ public class Enemy : MonoBehaviour
     public float movementSpeed;
     public float enemyHealth;
     public float maxEnemyHealth;
+    public static bool instantKill = false;
+    public static int doublePoints = 1;
     public GameObject playerObject;
     public GameObject gameProcessingObject;
     public GameObject healthbarSlider;
+    public GameObject powerupObject;
     EnemyHealthbar healthbar;
     Player player;
     GameProcessing gameProcessing;
@@ -44,8 +48,16 @@ public class Enemy : MonoBehaviour
 
     public void DamageEnemy() 
     {
-        float bulletDamage = Random.Range(0.5f, 1f);
-        enemyHealth -= bulletDamage;
+        if (instantKill)
+        {
+            enemyHealth -= 100;
+        }
+        else
+        {
+            float bulletDamage = Random.Range(0.5f, 1f);
+            enemyHealth -= bulletDamage;
+        }
+
         if (enemyHealth <= 0)
         {
             Eliminate();
@@ -55,9 +67,14 @@ public class Enemy : MonoBehaviour
 
     void Eliminate()
     {
-        player.totalPoints += 20;
-        player.playerPoints += 20;
+        player.totalPoints += (20 * doublePoints);
+        player.playerPoints += (20 * doublePoints);
         gameProcessing.enemiesToKill -= 1;
+        int randomChance = Random.Range(1, 51); // generate number between 1-50
+        if (randomChance == 1) // 2% chance to execute
+        {
+            Instantiate(powerupObject,transform.position,transform.rotation);
+        }
         Destroy(gameObject);
     }
 

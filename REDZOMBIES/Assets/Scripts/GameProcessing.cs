@@ -13,6 +13,7 @@ public class GameProcessing : MonoBehaviour
     public Pistol pistolObject;
     public Shotgun shotgunObject;
     public AssaultRifle assualtRifleObject;
+    public RocketLauncher rocketLauncherObject;
     public GameObject waveDisplay; //Reference WaveText object
     Text waveText;
     public GameObject scoreDisplay; //Reference ScoreText object
@@ -68,6 +69,10 @@ public class GameProcessing : MonoBehaviour
         else if (player.weaponSelected == 3)
         {
             weaponText.text = "Weapon: Shotgun";
+        }
+        else if (player.weaponSelected == 4)
+        {
+            weaponText.text = "Weapon: RocketLauncher";
         }
         bulletText.text = "Bullets: " + player.bulletCapacity.ToString(); //Output players bullet capacity
         healthText.text = "Health: " + player.playerHealth.ToString(); //Output players health
@@ -160,26 +165,27 @@ public class GameProcessing : MonoBehaviour
 
     void ScaleDifficulty()
     {
-        enemiesToSpawn += Random.Range(4, 9); //Spawn more enemies next round by a seemingly random amount
+        enemiesToSpawn += Random.Range(4, 7 + player.playerHealth); //Spawn more enemies next round by a seemingly random amount
         int randomChance = Random.Range(1, 6 - player.playerHealth); //Generate number between 1 and (5 - current health)
         if (randomChance == 1 && player.playerHealth > 1) //Scale enemy stats
         {
-            randomChance = Random.Range(1, 5);
-            if (randomChance == 1) //25% to increase health 
+            randomChance = Random.Range(1, 4); //1-3
+            if (randomChance == 1) //33% to increase health 
             {
                 enemyHealthScale += Random.Range(0.1f, player.playerHealth / 4f); //Add a random value 
                 Debug.Log("Enemy health increased!!");
             }
-            else if (randomChance == 2) //25% to increase speed
+            else if (randomChance == 2) //33% to increase speed
             {
                 enemySpeedScale += Random.Range(0.1f, player.playerHealth / 8f);
                 Debug.Log("Enemy movement increased!!");
             }
             else
             {
-                pistolObject.cost += player.playerHealth * 30; //Increase purchase cost by (player health * 40)
-                shotgunObject.cost += player.playerHealth * 35;
-                assualtRifleObject.cost += player.playerHealth * 40;
+                pistolObject.cost += player.playerHealth * 25; //Increase purchase cost by (player health * 40)
+                rocketLauncherObject.cost += player.playerHealth * 20;
+                shotgunObject.cost += player.playerHealth * 30;
+                assualtRifleObject.cost += player.playerHealth * 30;
             }
         }
         else

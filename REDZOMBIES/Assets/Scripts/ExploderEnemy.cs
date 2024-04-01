@@ -5,6 +5,8 @@ public class ExploderEnemy : MonoBehaviour
     public float movementSpeed;
     public float enemyHealth;
     public float maxEnemyHealth;
+    public static bool instantKill = false;
+    public static int doublePoints = 1;
     public GameObject playerObject;
     public GameObject gameProcessingObject;
     public GameObject explosionObject;
@@ -55,21 +57,26 @@ public class ExploderEnemy : MonoBehaviour
 
     public void DamageEnemy()
     {
-        if (enemyHealth > 0)
+        if (instantKill)
+        {
+            enemyHealth -= 100;
+        }
+        else
         {
             float bulletDamage = Random.Range(0.5f, 1f);
             enemyHealth -= bulletDamage;
-            if (enemyHealth <= 0)
-            {
-                Eliminate();
-            }
-            healthbar.SetHealthbar(enemyHealth, maxEnemyHealth);
         }
+
+        if (enemyHealth <= 0)
+        {
+            Eliminate();
+        }
+        healthbar.SetHealthbar(enemyHealth, maxEnemyHealth);
     }
     void Eliminate()
     {
-        player.playerPoints += 30;
-        player.totalPoints += 30;
+        player.playerPoints += (30 * doublePoints);
+        player.totalPoints += (30 * doublePoints);
         gameProcessing.enemiesToKill -= 1;
         Instantiate(explosionObject, transform.position, transform.rotation);
         Destroy(gameObject);
