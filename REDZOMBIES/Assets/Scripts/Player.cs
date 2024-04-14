@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void DamagePlayer()
+    public void DamagePlayer() //reduce health of player
     {
         if (attackTimer <= 0)
         {

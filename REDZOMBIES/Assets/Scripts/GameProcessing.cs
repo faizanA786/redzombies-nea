@@ -58,22 +58,25 @@ public class GameProcessing : MonoBehaviour
             SpawnEnemies();
         }
 
-        if (player.weaponSelected == 1)
+        switch (player.weaponSelected)
         {
-            weaponText.text = "Weapon: Pistol";
+            case 1:
+                weaponText.text = "Weapon: Pistol";
+                break;
+
+            case 2:
+                weaponText.text = "Weapon: AssualtRifle";
+                break;
+
+            case 3:
+                weaponText.text = "Weapon: Shotgun";
+                break;
+
+            case 4:
+                weaponText.text = "Weapon: RocketLauncher";
+                break;
         }
-        else if (player.weaponSelected == 2)
-        {
-            weaponText.text = "Weapon: AssualtRifle";
-        }
-        else if (player.weaponSelected == 3)
-        {
-            weaponText.text = "Weapon: Shotgun";
-        }
-        else if (player.weaponSelected == 4)
-        {
-            weaponText.text = "Weapon: RocketLauncher";
-        }
+
         bulletText.text = "Bullets: " + player.bulletCapacity.ToString(); //Output players bullet capacity
         healthText.text = "Health: " + player.playerHealth.ToString(); //Output players health
         waveText.text = "Wave: " + waveNumber.ToString();//Output wave number
@@ -159,13 +162,13 @@ public class GameProcessing : MonoBehaviour
         {
             enemiesSpawned = 0;
             nextWave = false;
-            Debug.Log("Next round started!\n" + enemiesToSpawn.ToString() + " enemies have spawned this round");
+            Debug.Log("All enemies spawned!\n" + enemiesToSpawn.ToString() + " enemies have spawned this round");
         }
     }
 
     void ScaleDifficulty()
     {
-        enemiesToSpawn += Random.Range(4, 7 + player.playerHealth); //Spawn more enemies next round by a seemingly random amount
+        enemiesToSpawn += Random.Range(4, 6 + player.playerHealth); //Spawn more enemies next round by a seemingly random amount
         int randomChance = Random.Range(1, 6 - player.playerHealth); //Generate number between 1 and (5 - current health)
         if (randomChance == 1 && player.playerHealth > 1) //Scale enemy stats
         {
