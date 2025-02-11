@@ -14,4 +14,5 @@ Buy to open up space for the map to have more moving ground for a greater chance
 From three different enemies, the standard zombie, the smaller, weaker yet more faster zombie and a rare zombie that explodes on impact, taking out everything near it.
 ##
 
-![Demo GIF](demo.gif)
+<img src="https://i.imgur.com/jMLyh68.gif" alt="Demo GIF" width="600"/>
+https://outlaw-f.itch.io/red-zombies
