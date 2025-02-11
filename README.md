@@ -12,6 +12,8 @@ Buy slow traps that slow enemies down or damage traps that repeatedly damage ene
 Buy to open up space for the map to have more moving ground for a greater chance of survival
 ### Enemies
 From three different enemies, the standard zombie, the smaller, weaker yet more faster zombie and a rare zombie that explodes on impact, taking out everything near it.
+### Powerups
+Enemies will occasionally drop limited-time powerups upon death such as double points, instant kill, max ammo, speed boost and invincible
 ##
 
 <img src="https://i.imgur.com/jMLyh68.gif" alt="Demo GIF" width="600"/>
