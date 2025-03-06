@@ -16,5 +16,5 @@ From three different enemies, the standard zombie, the smaller, weaker yet more 
 Enemies will occasionally drop limited-time powerups upon death such as double points, instant kill, max ammo, speed boost and invincible
 ##
 
-<img src="https://i.imgur.com/jMLyh68.gif" alt="Demo GIF" width="600"/>
+<img src="https://i.imgur.com/tdNUbNZ.gif" alt="Demo GIF" width="600"/>
 https://outlaw-f.itch.io/red-zombies
